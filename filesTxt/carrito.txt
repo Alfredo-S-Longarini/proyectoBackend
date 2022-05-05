@@ -1,0 +1,1 @@
+[{"id":"tn7zihyx74","productos":[{"id":2,"nameProd":"Razer Huntsman Mini","info":"","price":14500,"img":"","stock":40}]}]
