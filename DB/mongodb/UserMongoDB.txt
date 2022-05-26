@@ -1,0 +1,4 @@
+Username: AlfredoSL
+Password: AlfredMongoSL
+
+mongodb+srv://AlfredoSL:<password>@cluster0.jsxgmok.mongodb.net/test

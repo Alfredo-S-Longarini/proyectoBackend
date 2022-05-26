@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "nameProd": "Razer Deathadder v2",
+    "info": "",
+    "price": 6400,
+    "img": "",
+    "stock": 38
+  },
+  {
+    "id": 1,
+    "nameProd": "Razer Deathadder v2",
+    "info": "",
+    "price": 6400,
+    "img": "",
+    "stock": 38
+  },
+  {
+    "id": 2,
+    "nameProd": "Razer Huntsman Mini",
+    "info": "",
+    "price": 14500,
+    "img": "",
+    "stock": 41
+  },
+  {
+    "id": 2,
+    "nameProd": "Razer Huntsman Mini",
+    "info": "",
+    "price": 14500,
+    "img": "",
+    "stock": 41
+  },
+  {
+    "id": 3,
+    "nameProd": "Razer Kraken Ultimate",
+    "info": "",
+    "price": 25000,
+    "img": "",
+    "stock": 53
+  },
+  {
+    "id": 3,
+    "nameProd": "Razer Kraken Ultimate",
+    "info": "",
+    "price": 25000,
+    "img": "",
+    "stock": 53
+  },
+  {
+    "id": 1,
+    "nameProd": "Razer Deathadder v2",
+    "info": "",
+    "price": 6400,
+    "img": "",
+    "stock": 38
+  },
+  {
+    "id": 2,
+    "nameProd": "Razer Huntsman Mini",
+    "info": "",
+    "price": 14500,
+    "img": "",
+    "stock": 41
+  },
+  {
+    "id": 3,
+    "nameProd": "Razer Kraken Ultimate",
+    "info": "",
+    "price": 25000,
+    "img": "",
+    "stock": 53
+  }
+]
