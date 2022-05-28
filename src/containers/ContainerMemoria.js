@@ -1,7 +1,7 @@
 export default class ContainerMemoria{
 
     constructor(objetos){
-        this.objects=objetos;
+        this.products=objetos;
     }
     
     getAll(){

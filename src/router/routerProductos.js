@@ -13,14 +13,14 @@ let login=true;
 async function getProductos(prodId){
     if(prodId){
         try{
-            const productInFile = await productosDao.getIdProduct(prodId);
+            const productInFile = await productosDao.getProductoById(prodId);
             return productInFile;
         }catch(error){
             console.log(error);
         }
     }else{
         try{
-            const productsInFile = await productosDao.getAll();
+            const productsInFile = await productosDao.getProductos();
             return productsInFile;
         }catch(error){
             console.log(error);
@@ -41,7 +41,7 @@ routerProductos.get('/logout', (req, res)=>{ //Cerrar sesión de administrador.
 //-----------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------
 
-routerProductos.get('/:id?', async (req, res)=>{ //Me permite mostrar todos los productos disponibles o un producto por su id. (Disponible para usuarios y administradores).
+routerProductos.get('/:id?', async (req, res)=>{ //Permite mostrar todos los productos disponibles o un producto por su id. (Disponible para usuarios y administradores).
     res.json(await getProductos(req.params.id));
 });
 
@@ -51,7 +51,7 @@ routerProductos.get('/:id?', async (req, res)=>{ //Me permite mostrar todos los 
 routerProductos.post('/', async (req, res)=>{ //Para incorporar productos al listado. (Disponible para administradores).
     if(login){
         for (let i = 0; i < allProducts.length; i++) {
-            await productosDao.save(allProducts[i])
+            await productosDao.saveProducto(allProducts[i])
         }
         res.json("Productos Agregados!");
     }else{
@@ -66,7 +66,7 @@ routerProductos.post('/', async (req, res)=>{ //Para incorporar productos al lis
 routerProductos.put('/:id', async (req, res)=>{ //Actualiza un producto por su id. (Disponible solo para administradores).
 
     if(login){
-        res.json(await productosDao.updateProducts(req.params.id, req.body));
+        res.json(await productosDao.updateProducto(req.params.id, req.body));
     }else{
         res.json("Para realizar esta acción debe ser administrador. "+
         "Ingrese a http://localhost:8080/api/proyecto/login para iniciar sesión.");
@@ -79,7 +79,7 @@ routerProductos.put('/:id', async (req, res)=>{ //Actualiza un producto por su i
 routerProductos.delete('/:id', async (req, res)=>{ //Borra un producto por su id (disponible solo para administradores).
     
     if(login){
-        await productosDao.delete(req.params.id);
+        await productosDao.deleteProducto(req.params.id);
         console.log("Producto Eliminado");
         res.json("Producto Eliminado");
     }else{

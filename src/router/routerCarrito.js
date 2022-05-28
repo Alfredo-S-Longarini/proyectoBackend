@@ -5,11 +5,11 @@ import { productosDao } from '../daos/productos/indexProductos.js';
 
 const routerCarrito = new Router();
 
-let carrito={};
-const productosArray=await productosDao.getAll();
+let carrito={}
+const productosArray=await productosDao.getProductos();
 
 routerCarrito.get('/:id/productos', async (req, res)=>{//Permite listar todos los productos guardados en el carrito.
-    const cartProds= await carritosDao.getId(req.params.id)
+    const cartProds= await carritosDao.getCarrito(req.params.id)
     res.json(cartProds.productos);
 });
 
@@ -17,16 +17,11 @@ routerCarrito.get('/:id/productos', async (req, res)=>{//Permite listar todos lo
 //-----------------------------------------------------------------------------------------------
 
 routerCarrito.post('/', async (req, res)=>{ //Crea un carrito y devuelve su id.
-    const generadorId = () => Math.random().toString(36).substr(2, 18);
 
-    carrito.id=generadorId(); 
-    carrito.productos=[];
+    //El metodo saveCarrito() crea y guarda el carrito en la base de datos. Retorna el carrito creado para poder utilizarlo en las demas operaciones.
+    carrito = await carritosDao.saveCarrito();
 
-    console.log(carrito);
-
-    const saveCart = await carritosDao.saveCarrito(carrito);
-
-    res.json("Carrito creado! "+ saveCart);
+    res.json("Carrito creado! "+ carrito.id);
 });
 
 //-----------------------------------------------------------------------------------------------
@@ -41,7 +36,7 @@ routerCarrito.post('/:id/productos', async (req, res)=>{ //Para incorporar produ
 
         if(product){
             carrito.productos.push(product)
-            await carritosDao.updateCart(carrito.id, carrito.productos);
+            await carritosDao.updateCarrito(carrito.id, carrito.productos);
             res.json(carrito)
         }else{
             res.json("No se encontró el producto")
@@ -54,11 +49,10 @@ routerCarrito.post('/:id/productos', async (req, res)=>{ //Para incorporar produ
 
 routerCarrito.delete('/:id/productos/:id_prod', async (req, res)=>{ // Elimina un producto del carrito por su id de carrito y producto.
     if(req.params.id==carrito.id){
-        console.log(req.params.id_prod);
         const productCartDelete = carrito.productos.filter((element) => element.id != req.params.id_prod);
         carrito.productos=productCartDelete;
 
-        await carritosDao.updateCart(carrito.id, carrito.productos); //Actualizo Archivo Carrito.
+        await carritosDao.updateCarrito(carrito.id, carrito.productos); //Actualizo Archivo Carrito.
 
         res.json(carrito);
     }else{
@@ -70,7 +64,7 @@ routerCarrito.delete('/:id/productos/:id_prod', async (req, res)=>{ // Elimina u
 //-----------------------------------------------------------------------------------------------
 
 routerCarrito.delete('/:id', async (req, res)=>{ //Vacía un carrito y lo elimina. 
-    carritosDao.deleteCart()
+    carritosDao.deleteCarrito(req.params.id)
 
     res.json("Carrito eliminado!");
 });

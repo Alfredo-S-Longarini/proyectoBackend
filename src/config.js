@@ -3,10 +3,10 @@ export default {
         path:'./DB/filesTxt'
     },
     firebase:{
-        path: './DB/firebase/proyectobackend-asl-firebase-adminsdk-e5ctm-18825a7c4b.json'
+        path: './DB/firebase/(.json con la información para conectar a la base de datos)'
     },
     mongodb:{
-        cnxSrt: 'mongodb+srv://AlfredoSL:AlfredMongoSL@cluster0.jsxgmok.mongodb.net/test',
+        cnxSrt: '(string de conexión para mongoDB)',
         options:{
             useNewUrlParser: true,
             useUnifiedTopology: true,

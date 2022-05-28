@@ -1,6 +1,6 @@
 import ContainerMongoDb from "../../containers/ContainerMongoDb.js";
 
-class ProductosDaoMongoDB extends ContainerMongoDb{
+class CarritosDaoMongoDB extends ContainerMongoDb{
 
     constructor(){
         super('carritos', {
@@ -8,6 +8,7 @@ class ProductosDaoMongoDB extends ContainerMongoDb{
             productos:{type: Array, required: true}
         })
     }
+
 }
 
-export default ProductosDaoMongoDB;
+export default CarritosDaoMongoDB;
